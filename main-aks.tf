@@ -1,6 +1,5 @@
 data "azurerm_client_config" "current" {}
 
-
 resource "azurerm_resource_group" "this" {
   name     = azurecaf_naming_convention.resource_group.result
   location = var.location
@@ -20,11 +19,12 @@ resource "azurerm_subnet" "this" {
   address_prefixes     = var.snet_address_prefixes
 }
 
-resource "azurerm_kubernetes_cluster" "example" {
+resource "azurerm_kubernetes_cluster" "this" {
   name                = azurecaf_naming_convention.aks.result
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   dns_prefix          = "registry-aks"
+  oidc_issuer_enabled = true
 
   default_node_pool {
     name           = "system"
