@@ -1,0 +1,9 @@
+certIssuer:
+  email: "user@centoso.com"
+  name: letsencrypt
+  secretName: letsencrypt
+  server: https://acme-v02.api.letsencrypt.org/directory
+  httpResolver:
+    enabled: true
+    ingressClass: azure/application-gateway
+  resolvers: []

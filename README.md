@@ -12,6 +12,7 @@ Docker registry on AKS
     - [Register the EnableOIDCIssuerPreview feature flag](#register-the-enableoidcissuerpreview-feature-flag)
   - [Install the aks-preview CLI extension](#install-the-aks-preview-cli-extension)
 - [Install docker-registry](#install-docker-registry)
+- [Update Domain name](#update-domain-name)
 
 # Requirements
 
@@ -72,10 +73,13 @@ terraform init
 ```
 
 ```bash
-terraform apply -input=false -auto-approve
+terraform apply -var host_name=<host_name> -input=false -auto-approve
 ```
 
 ```bash
-terraform destroy -input=false -auto-approve
+terraform destroy -var host_name=<host_name> -input=false -auto-approve
 ```
 
+# Update Domain name
+
+After the provisioning terraform print out to `stdout` the `public ip address` of the registry. Until you are not update your host domain the acme challange will fails.
